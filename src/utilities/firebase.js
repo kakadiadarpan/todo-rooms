@@ -22,7 +22,7 @@ export const firebaseConfig = firebase.initializeApp(config);
 firebaseConfig.auth().onAuthStateChanged(user => {
   if (user) {
     userId = user.uid
-    browserHistory.push('/todo-rooms');
+    browserHistory.push('/rooms');
   } else {
     browserHistory.push('/');
   }
@@ -32,13 +32,13 @@ firebaseConfig.auth().onAuthStateChanged(user => {
 export const saveUser = (user, uid) => {
   usersRef = firebaseConfig.database().ref(`${uid}/users`);
   usersRef.set(user);
-  browserHistory.push('/todo-rooms');
+  browserHistory.push('/rooms');
 }
 
 //authenticate user
 export const authenticateUser = () => {
   if (userId) {
-    browserHistory.push('/todo-rooms');
+    browserHistory.push('/rooms');
   } else {
     const provider = new firebase.auth.GoogleAuthProvider();
     firebaseConfig.auth().signInWithPopup(provider)

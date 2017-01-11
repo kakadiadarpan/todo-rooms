@@ -8,7 +8,7 @@ import Login from './components/login'
 export default (
   <Route path="/" component={App}>
     <IndexRoute component={Login} />
-    <Route path="/todo-rooms" component={TodoRoomsPage}/>
+    <Route path="/rooms" component={TodoRoomsPage}/>
     <Route path="/todos/:roomId/:roomName" component={TodoPage}/>
   </Route>
 );
