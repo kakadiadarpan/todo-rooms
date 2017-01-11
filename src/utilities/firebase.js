@@ -1,14 +1,14 @@
 import * as firebase from 'firebase';
-import { saveTodos, saveTodoRooms } from '../utilities/storageUtility'
+import { saveTodos, saveTodoRooms } from '../utilities/storageUtility';
 import { browserHistory } from 'react-router';
 
 /* initialize firebase */
 const config = {
-  apiKey: "AIzaSyBOqZiemlzJGAcLrZ-jiOJwM3zXFuP_9cM",
-  authDomain: "todo-d8ac0.firebaseapp.com",
-  databaseURL: "https://todo-d8ac0.firebaseio.com",
-  storageBucket: "todo-d8ac0.appspot.com",
-  messagingSenderId: "1081774369121"
+  apiKey: "AIzaSyAFYNAvULoK1Df8rEZdBowdjX7TfEPf0G8",
+  authDomain: "todo-rooms.firebaseapp.com",
+  databaseURL: "https://todo-rooms.firebaseio.com",
+  storageBucket: "todo-rooms.appspot.com",
+  messagingSenderId: "709791003881"
 };
 
 /* unique identifier */
@@ -18,24 +18,32 @@ let usersRef;
 let userId;
 
 export const firebaseConfig = firebase.initializeApp(config);
-/*watch on auth*/
-firebaseConfig.auth().onAuthStateChanged(user => {
-  if (user) {
-    userId = user.uid
-    browserHistory.push('/rooms');
-  } else {
-    browserHistory.push('/');
-  }
-});
 
-//save user
-export const saveUser = (user, uid) => {
-  usersRef = firebaseConfig.database().ref(`${uid}/users`);
+/*watch on auth*/
+if(localStorage.getItem('uId')){
+  userId = localStorage.getItem('uId');
+  browserHistory.push('/rooms');
+} else {
+  firebaseConfig.auth().onAuthStateChanged(user => {
+    if (user) {
+      userId = user.uid
+      browserHistory.push('/rooms');
+    } else {
+      browserHistory.push('/');
+    }
+  });
+}
+
+
+/*save user*/
+export const saveUser = (user, uId) => {
+  usersRef = firebaseConfig.database().ref(`${uId}/users`);
   usersRef.set(user);
+  localStorage.setItem('uId',uId);
   browserHistory.push('/rooms');
 }
 
-//authenticate user
+/*authenticate user*/
 export const authenticateUser = () => {
   if (userId) {
     browserHistory.push('/rooms');
@@ -52,7 +60,7 @@ export const authenticateUser = () => {
   }
 }
 
-//check if user is already authenticated
+/*check if user is already authenticated*/
 export const checkAuthentication = () => {
   if (userId) {
     return true;
@@ -61,25 +69,23 @@ export const checkAuthentication = () => {
   }
 }
 
-// save parent todo
+/*save parent todo*/
 export const saveTodoRoomsDB = (todoRooms) => {
   if (userId) {
     todoRoomsRef = firebaseConfig.database().ref(`${userId}/todorooms`);
     todoRoomsRef.set(todoRooms);
   }
-
 }
 
-//save todo with todolistid
+/*save todo with todolistid*/
 export const saveTodosDB = (todos) => {
   if (userId) {
     todosRef = firebaseConfig.database().ref(`${userId}/todos`);
     todosRef.set(todos);
   }
-
 }
 
-//get todorooms
+/*get todorooms*/
 export const getTodoRoomsDB = () => {
   todoRoomsRef = firebaseConfig.database().ref(`${userId}/todorooms`);
   return todoRoomsRef.once('value')
@@ -94,7 +100,7 @@ export const getTodoRoomsDB = () => {
     });
 }
 
-//get todos
+/*get todos*/
 export const getTodosDB = () => {
   todosRef = firebaseConfig.database().ref(`${userId}/todos`);
   return todosRef.once('value')

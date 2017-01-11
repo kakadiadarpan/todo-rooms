@@ -2,7 +2,6 @@
   "name": "todo-rooms",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://kakadiadarpan.github.io/todo-rooms",
   "devDependencies": {
     "autoprefixer": "6.5.1",
     "babel-core": "6.17.0",
@@ -44,6 +43,7 @@
     "sass-loader": "^4.1.1",
     "strip-ansi": "3.0.1",
     "style-loader": "0.13.1",
+    "sw-precache": "^4.3.0",
     "url-loader": "0.5.7",
     "webpack": "1.14.0",
     "webpack-dev-server": "1.16.2",
@@ -75,7 +75,7 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "deploy": "npm run build && gh-pages -d build"
+    "offline": "node scripts/build.js && sw-precache --root='build/' --static-file-globs='build/**/!(*map*)'"
   },
   "jest": {
     "collectCoverageFrom": [

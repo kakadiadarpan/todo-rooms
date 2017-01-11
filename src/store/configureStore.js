@@ -24,22 +24,27 @@ export default function configureStore(initialState) {
   store.dispatch(fetchCachedTodoRooms());
   store.dispatch(fetchCachedTodos());
   //delay until auth completes
-  firebaseConfig.auth().onAuthStateChanged(user => {
-    if (user) {
-      getTodoRoomsDB()
-        .then(response => {
-          if (response) {
-            store.dispatch(fetchCachedTodoRooms());
-          }
-        });
-      getTodosDB()
-        .then(response => {
-          if (response) {
-            store.dispatch(fetchCachedTodos());
-          }
-        });
-    }
-  });
+  if(localStorage.getItem('uId')){
+    browserHistory.push('/rooms');
+  } else {
+    firebaseConfig.auth().onAuthStateChanged(user => {
+      if (user) {
+        getTodoRoomsDB()
+          .then(response => {
+            if (response) {
+              store.dispatch(fetchCachedTodoRooms());
+            }
+          });
+        getTodosDB()
+          .then(response => {
+            if (response) {
+              store.dispatch(fetchCachedTodos());
+            }
+          });
+      }
+    });
+  }
+  
 
   if (module.hot) {
     // Enable Webpack hot module replacement for reducers

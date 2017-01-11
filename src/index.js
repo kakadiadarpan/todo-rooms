@@ -8,7 +8,7 @@ import './styles/styles.scss';
 
 /* Register a service worker */
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js', { scope: '/' })
+  navigator.serviceWorker.register('/service-worker.js', { scope: '/' })
 }
 
 const store = configureStore();
