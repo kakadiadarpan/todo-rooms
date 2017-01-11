@@ -3,17 +3,13 @@ self.addEventListener('install', event => {
   event.waitUntil(
     caches.open(CACHE_NAME).then(cache => {
       return cache.addAll([
-        '/index.html',
-        '/icons/favicon.ico',
-        '/icons/icon_google.png',
-        '/icons/android-icon-192x192.png',
-        '/icons/apple-icon-114x114.png',
-        '/manifest.webmanifest',
-        '/styles/styles.scss',
-        '/styles/_app_variables.scss',
-        '/styles/_bootstrap_variables.scss',
-        '/styles/_imports.scss',
-        '/styles/_mixins.scss'
+        '/todo-rooms/index.html',
+        '/todo-rooms/icons/favicon.ico',
+        '/todo-rooms/icons/icon_google.png',
+        '/todo-rooms/icons/android-icon-192x192.png',
+        '/todo-rooms/icons/apple-icon-114x114.png',
+        '/todo-rooms/manifest.webmanifest',
+        '/todo-rooms/styles/styles.scss'
       ])
         .then(() => {
           console.log('registerd');
