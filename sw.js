@@ -8,7 +8,8 @@ self.addEventListener('install', event => {
         '/todo-rooms/icons/icon_google.png',
         '/todo-rooms/icons/android-icon-192x192.png',
         '/todo-rooms/icons/apple-icon-114x114.png',
-        '/todo-rooms/manifest.webmanifest'
+        '/todo-rooms/manifest.webmanifest',
+        '/todo-rooms/static/js/*.js'
       ])
         .then(() => {
           console.log('registerd');

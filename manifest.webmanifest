@@ -2,7 +2,7 @@
   "name": "Todo",
   "short_name": "Todo",
   "lang": "en-GB",
-  "start_url": "/",
+  "start_url": "/todo-rooms/",
   "display": "standalone",
   "theme_color": "#eff0f2",
   "icons": [
