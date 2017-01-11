@@ -24,7 +24,7 @@ firebaseConfig.auth().onAuthStateChanged(user => {
     userId = user.uid
     browserHistory.push('/rooms');
   } else {
-    browserHistory.push('/');
+    browserHistory.push('/todo-rooms');
   }
 });
 
