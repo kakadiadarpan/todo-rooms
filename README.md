@@ -1,4 +1,7 @@
 ![Screenshot](https://cloud.githubusercontent.com/assets/10805593/21857270/e6a68230-d84a-11e6-9448-17534d939a3e.png)
+
+Lighthouse PWA Report
+![PWA Report](https://cloud.githubusercontent.com/assets/10805593/21880820/f3994ad2-d8c6-11e6-8ea9-bd0b9d449197.png)
 # react-redux TODO
 
 A simple Progressive Web App(PWA) TODO made on top of react, Material Design, IndexedDB and localStorage with service-workers.
