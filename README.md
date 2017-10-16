@@ -4,6 +4,8 @@ Lighthouse PWA Report
 ![PWA Report](https://cloud.githubusercontent.com/assets/10805593/21880820/f3994ad2-d8c6-11e6-8ea9-bd0b9d449197.png)
 # react-redux TODO
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/kakadiadarpan/todo-rooms.svg)](https://greenkeeper.io/)
+
 A simple Progressive Web App(PWA) TODO made on top of react, Material Design, IndexedDB and localStorage with service-workers.
 
 
